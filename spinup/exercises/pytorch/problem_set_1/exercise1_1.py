@@ -23,12 +23,15 @@ def gaussian_likelihood(x, mu, log_std):
     Returns:
         Tensor with shape [batch]
     """
-    #######################
-    #                     #
-    #   YOUR CODE HERE    #
-    #                     #
-    #######################
-    return torch.zeros(1)
+
+    #dont understand why we do this torch.exp(log_std)
+    #also dont understand why we can just throw out k which as i understand is the dimensions
+
+    likelihood = -.5 * ( ((torch.pow(((x - mu) / torch.exp(log_std)), 2)) + (2 * log_std)) + np.log(2 * np.pi) )
+    sum = likelihood.sum(axis=-1)
+    return sum
+
+    #return torch.zeros(1)
 
 
 if __name__ == '__main__':
